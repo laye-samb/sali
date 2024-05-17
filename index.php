@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" type="text/css" href="style/index.css">
+    <link rel="stylesheet" href="style\index.css">
 </head>
 <body>
     <div class="container">
@@ -13,6 +13,7 @@
         <a href="gestion_compte.php" class="button">Gestion des Comptes</a>
         <a href="creation_compte.php" class="button">Créer un Compte</a>
         <a href="operation_compte.php" class="button">Relevé de Compte</a>
+        <a href="info.php" class="button">Informations des Clients</a>
     </div>
 </body>
 </html>

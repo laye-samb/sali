@@ -1,5 +1,5 @@
 <?php
-require_once("model\operationBancaire.php");
+require_once("OperationBancaire.php");
 
 $comptes = OperationBancaire::getAllAccounts();
 $transactions = [];

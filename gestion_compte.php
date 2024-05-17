@@ -1,5 +1,6 @@
 <?php
-require_once("model/CompteBancaire.php");
+require_once("CompteBancaire.php");
+require_once("OperationBancaire.php");
 
 $comptes = CompteBancaire::getAllAccounts();
 $message = "";
@@ -9,9 +10,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $montant = (float) $_POST['montant'];
     $action = $_POST['action'];
 
-    if ($action == 'virement' && isset($_POST['id_compte_dest'])) {
-        $id_compte_dest = $_POST['id_compte_dest'];
-        if (CompteBancaire::transferFunds($id_compte, $id_compte_dest, $montant)) {
+    if ($action == 'virement' && isset($_POST['id_compte'])) {
+        $id_compte_dest = $_POST['id_compte'];
+        if (CompteBancaire::transferFunds($id_compte, $id_compte, $montant)) {
             $message = "Virement de $montant franc cfa vers le compte $id_compte_dest effectué avec succès.";
         } else {
             $message = "Erreur lors du virement.";
@@ -100,6 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </tbody>
     </table>
     <br>
-    <a href="index.php" class="button">Accueil</a>
+    <a href="index.php" class="button">Retour à l'accueil</a>
 </body>
 </html>

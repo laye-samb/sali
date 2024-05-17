@@ -4,16 +4,16 @@ require_once("database/config.php");
 class CompteBancaire {
     public static function getAllAccounts() {
         global $conn;
-        $sql = "SELECT CompteBancaire.*, Client.nom, Client.prenom 
-                FROM CompteBancaire 
-                JOIN Client ON CompteBancaire.id_client = Client.id_client";
+        $sql = "SELECT comptebancaire.*, client.nom, client.prenom 
+                FROM comptebancaire 
+                JOIN client ON comptebancaire.id_client = client.id_client";
         $stmt = $conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function getAccountById($id_compte) {
         global $conn;
-        $sql = "SELECT * FROM CompteBancaire WHERE id_compte = ?";
+        $sql = "SELECT * FROM comptebancaire WHERE id_compte = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$id_compte]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
@@ -21,14 +21,14 @@ class CompteBancaire {
 
     public static function updateSolde($id_compte, $nouveau_solde) {
         global $conn;
-        $sql = "UPDATE CompteBancaire SET solde = ? WHERE id_compte = ?";
+        $sql = "UPDATE comptebancaire SET solde = ? WHERE id_compte = ?";
         $stmt = $conn->prepare($sql);
         return $stmt->execute([$nouveau_solde, $id_compte]);
     }
 
     public static function addOperation($id_compte, $type_operation, $montant) {
         global $conn;
-        $sql = "INSERT INTO OperationBancaire (id_compte, type_operation, montant, date_operation) VALUES (?, ?, ?, NOW())";
+        $sql = "INSERT INTO operationbancaire (id_compte, type_operation, montant, date_operation) VALUES (?, ?, ?, NOW())";
         $stmt = $conn->prepare($sql);
         return $stmt->execute([$id_compte, $type_operation, $montant]);
     }

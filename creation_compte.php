@@ -1,6 +1,6 @@
 <?php
 require_once("database/config.php");
-require_once("model/client.php");
+require_once("Client.php");
 
 $nomErr = $prenomErr = $adresseErr = $telephoneErr = "";
 $nom = $prenom = $adresse = $telephone = "";
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $id_client = Client::addClient($nom, $prenom, $adresse, $telephone);
         $numero_compte = generateAccountNumber();
         $solde = 0;
-        $sql = "INSERT INTO CompteBancaire (numero_compte, solde, id_client) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO comptebancaire (numero_compte, solde, id_client) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$numero_compte, $solde, $id_client]);
         
